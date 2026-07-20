@@ -3,11 +3,15 @@ name = "voice-demo"
 version = "1.0.0"
 edition = "2021"
 
+[features]
+default = ["custom-protocol"]
+custom-protocol = ["tauri/custom-protocol"]
+
 [build-dependencies]
 tauri-build = { version = "1", features = [] }
 
 [dependencies]
-tauri = { version = "1", features = ["shell-open"] }
+tauri = { version = "1", features = ["shell-open", "bundle-nsis", "bundle-msi", "bundle-appimage", "bundle-deb"] }
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
 cpal = "0.15"
