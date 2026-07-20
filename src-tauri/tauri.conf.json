@@ -1,0 +1,44 @@
+{
+  "build": {
+    "beforeBuildCommand": "npm run build",
+    "beforeDevCommand": "npm run dev",
+    "devPath": "http://localhost:5173",
+    "distDir": "../dist"
+  },
+  "package": {
+    "productName": "VoiceDemo",
+    "version": "1.0.0"
+  },
+  "tauri": {
+    "allowlist": {
+      "all": false,
+      "shell": {
+        "all": false,
+        "open": true
+      }
+    },
+    "bundle": {
+      "active": true,
+      "targets": ["msi", "nsis", "deb", "appimage", "app", "dmg"],
+      "identifier": "com.voicedemo.app",
+      "icon": [
+        "icons/icon.png"
+      ],
+      "resources": ["models/*"]
+    },
+    "security": {
+      "csp": null
+    },
+    "windows": [
+      {
+        "fullscreen": false,
+        "resizable": true,
+        "title": "语音转文字 - VoiceDemo",
+        "width": 480,
+        "height": 320,
+        "minWidth": 400,
+        "minHeight": 280
+      }
+    ]
+  }
+}

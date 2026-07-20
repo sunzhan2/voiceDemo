@@ -1,0 +1,36 @@
+node_modules/
+dist/
+target/
+*.log
+.DS_Store
+
+# 模型文件（体积太大，CI 里自动下载）
+src-tauri/models/*.onnx
+src-tauri/models/*.int8.onnx
+src-tauri/models/tokens.txt
+src-tauri/models/*.tar.bz2
+!src-tauri/models/README.txt
+
+# 本机工具链（不应进仓库）
+.rustup/
+.cargo/
+bin/
+mingw64/
+win-libs/
+rustup-init.exe
+vs_BuildTools.exe
+
+# 临时文件
+tmp/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Agent 工具本地状态（不进仓库）
+.codegraph/
+.omo/
+
+# Tauri 自动生成
+src-tauri/gen/schemas/
