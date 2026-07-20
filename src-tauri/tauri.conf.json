@@ -22,7 +22,9 @@
       "targets": ["msi", "nsis", "deb", "appimage", "app", "dmg"],
       "identifier": "com.voicedemo.app",
       "icon": [
-        "icons/icon.png"
+        "icons/icon.png",
+        "icons/icon.ico",
+        "icons/icon.icns"
       ],
       "resources": ["models/*"]
     },
