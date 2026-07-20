@@ -4,12 +4,11 @@ on:
   workflow_dispatch:
   push:
     branches: [main, master]
+    tags:
+      - "v*"
     paths-ignore:
       - "**.md"
       - "开发文档.md"
-  push:
-    tags:
-      - "v*"
   pull_request:
     branches: [main, master]
 
