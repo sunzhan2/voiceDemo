@@ -67,8 +67,30 @@ jobs:
       - name: Install npm dependencies
         run: npm ci
 
+      - name: Install Windows bundle tools (WiX Toolset v3 for MSI)
+        shell: pwsh
+        run: |
+          # WiX Toolset v3 is required by Tauri for MSI bundling
+          # Also ensure NSIS is available
+          choco install wixtoolset --limit-output --no-progress -y 2>$null
+          # Verify installations
+          Get-Command candle -ErrorAction SilentlyContinue | ForEach-Object { "WiX candle found: $($_.Source)" }
+          Get-Command light  -ErrorAction SilentlyContinue | ForEach-Object { "WiX light found: $($_.Source)" }
+          Get-Command makensis -ErrorAction SilentlyContinue | ForEach-Object { "NSIS makensis found: $($_.Source)" }
+
       - name: Build Windows bundle
         run: npm run tauri build
+
+      - name: List build output (diagnostic)
+        shell: pwsh
+        run: |
+          Write-Host "=== target/release/bundle ==="
+          Get-ChildItem -Recurse src-tauri/target/release/bundle -ErrorAction SilentlyContinue | ForEach-Object { $_.FullName }
+          Write-Host "=== target/release (exe/dll) ==="
+          Get-ChildItem src-tauri/target/release/*.exe -ErrorAction SilentlyContinue | ForEach-Object { $_.FullName }
+          Write-Host "=== target (any bundle) ==="
+          Get-ChildItem src-tauri/target -Recurse -Filter "*.msi" -ErrorAction SilentlyContinue | ForEach-Object { $_.FullName }
+          Get-ChildItem src-tauri/target -Recurse -Filter "*.exe" -ErrorAction SilentlyContinue | ForEach-Object { $_.FullName }
 
       - name: Upload Windows MSI
         uses: actions/upload-artifact@v4
