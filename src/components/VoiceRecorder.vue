@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from "vue"
+import { ref, onMounted } from "vue"
 import { invoke } from "@tauri-apps/api/tauri"
 
 const isRecording = ref(false)
