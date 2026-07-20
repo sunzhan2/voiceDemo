@@ -11,7 +11,7 @@ custom-protocol = ["tauri/custom-protocol"]
 tauri-build = { version = "1", features = [] }
 
 [dependencies]
-tauri = { version = "1", features = ["shell-open", "bundle-nsis", "bundle-msi", "bundle-appimage", "bundle-deb"] }
+tauri = { version = "1", features = ["shell-open"] }
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
 cpal = "0.15"
